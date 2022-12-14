@@ -1,0 +1,27 @@
+{
+  "name": "userquestions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "njs2 run serverless",
+    "lint": "eslint . --ext .js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "njs2-type": "project",
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-njs2-lint": "^1.0.0",
+    "nodemon": "^2.0.12",
+    "prettier": "2.0.5",
+    "serverless-offline": "^7.0.0",
+    "serverless-prune-plugin": "^1.5.1"
+  },
+  "dependencies": {
+    "@njs2/base": "^2.1.0",
+    "@njs2/sql": "^2.1.0",
+    "bcrypt": "^5.1.0"
+  }
+}
