@@ -11,14 +11,14 @@ class UserRegisterAction extends baseAction {
       let { userName, emailId, password } = this;
 
       //variable section
-      let responseData;
+      let responseData; // FEEDBACK: Never have a vairable that doesnt have initialization!
 
       /*
       FEEDBACK:
         BELOW CONDITION NOT NEEDED: njs2 will handle required fields if "required" field is set to true in init.js file
       */
       if (!emailId || !password) {
-        this.setResponse("EMAILID_PASSWORD_REQUIRED");
+        this.setResponse("EMAILID_PASSWORD_REQUIRED"); // FEEDBACK: It is not a good practice to combine multiple error messages into 1! Seperate them.
         return {};
       }
 
@@ -34,9 +34,9 @@ class UserRegisterAction extends baseAction {
 
       const data = {
         //type: GLB.USER_TYPE.EMAIL,
-        otp: otp ? otp : "",
+        otp: otp ? otp : "", // FEEDBACK: this logical line is dead code i think! your otp variable will always have a value. So why the check?
         email_id: emailId,
-        //password : password,
+        //password : password, // FEEDBACK: Do 
         expire_at: timestamp,
         // created_at: new Date(),
         status: GLB.ACTIVE,
@@ -44,7 +44,7 @@ class UserRegisterAction extends baseAction {
 
       console.log(data);
       /*<-------------------- INSERT OTP TRANSACTION -------------------->*/
-      let otpData = await userLib.insertOtpData(data);
+      let otpData = await userLib.insertOtpData(data); // FEEDBACK: use const for varibales that wouldnt change!
 
       const userData = {
         //type: GLB.USER_TYPE.EMAIL,
@@ -64,14 +64,15 @@ class UserRegisterAction extends baseAction {
         email_id: emailId,
         password: password,
       });
-      console.log(userDetails);
+      console.log(userDetails); // FEEDBACK: DO NOT LEAVE BEHING debug log messages especicaly console.log messages!
     /*<-------------------- INSERT USER IF USERNAME AND PASSWORD NOT MATCHES-------------------->*/
       if (!userDetails) {
-        let userId = await userLib.createUser(userData);
+        let userId = await userLib.createUser(userData); // FEEDBACK: Do not have UNUSED VARIABLES! If you really want it, please use an underscore
+        // let _ =  await userLib.createUser(userData); // This way other DEV will not be using the variables by mistake
       }
 
       responseData = {
-        otp: otp,
+        otp: otp, // FEEDBACK: you do not have to say otp: otp! if the key is same as the variable, then only variable is enough.
       };
 
       this.setResponse('SUCCESS');
@@ -79,7 +80,12 @@ class UserRegisterAction extends baseAction {
 
     } catch(error) {
       // log error for debuging purpose
-      console.log("user.register error: ", error);
+      console.log("user.register error: ", error); // FEEDBACK: Use the proper log message. if it is an error it should be console.error!
+      // FEEDBACK: there is nothing being set as error or nothing being returned back to the caller in the catch block!
+      // It is not a good practice to silently exit!
+      // Suggest you to make a new Error Message Code for each API. That way we know which API crashed
+      // Also it it suits you, please Throw the error here. Which will be caught by the Framework method which calls this execute method.
+      // The Framework method would then exit gracefully
     }
   };
 
