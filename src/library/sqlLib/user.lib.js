@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 class user {
   async getUserDetail(user_id) {
     return await SQLManager.findOne("user", { user_id: user_id });
@@ -41,13 +42,23 @@ class user {
 
   async getRecentOtpData(emailId, otp) {
     return (
-      await SQLManager.doExecuteRawQuery(`SELECT * FROM otp_transaction WHERE email_id = :emailId AND status=${GLB.ACTIVE} ORDER BY otp_transaction_id DESC LIMIT 1`, { emailId: emailId })
+      await SQLManager.doExecuteRawQuery(`SELECT * FROM otp_transaction WHERE email_id = :emailId ORDER BY otp_transaction_id DESC LIMIT 1`, { emailId: emailId })
     )[0];
   }
 
-  async checkUserExistsForEmail(emailId) {
-    return await SQLManager.findOne("user", { email_id: emailId });
+  async checkUserExistsForEmail(whereClause, returnFields) {
+    const user = await SQLManager.findOne("user", whereClause, {}, returnFields);
+    if (user) {
+      const jwtAuth = typeof (process.env.AUTH) == "string" ? JSON.parse(process.env.AUTH) : process.env.AUTH;
+      const accessToken = jwt.sign({ user_id: user.user_id }, jwtAuth.JWT_SECRET);
 
+      await SQLManager.update("user", { user_id: user.user_id }, {
+        access_token: accessToken,
+      });
+
+      return { ...user, access_token: accessToken };
+    }
+    return false;
   }
 
 }

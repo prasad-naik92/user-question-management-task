@@ -17,25 +17,18 @@ class UserLoginInitalize extends baseInitialize {
         "required": true,
         "default": ""
       },
-      "userName": {
-        "name": "user_naame",
-        "type": "string",
-        "description": "",
-        "required": false,
-        "default": ""
-      },
       "emailId": {
         "name": "email_id",
         "type": "string",
         "description": "email id",
-        "required": false,
+        "required": true,
         "default": ""
       },
       "password": {
         "name": "password",
         "type": "string",
         "description": "",
-        "required": false,
+        "required": true,
         "default": ""
       },
     };

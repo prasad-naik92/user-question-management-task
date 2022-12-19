@@ -22,6 +22,10 @@ class question {
     async insertQuestionData(userObj) {
       return await SQLManager.insert("question", userObj);
     }
+
+    async createOption(questionObj) {
+      return await SQLManager.insert("option", questionObj);
+    }
   }
   
   module.exports = question;

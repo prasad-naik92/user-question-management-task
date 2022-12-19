@@ -23,6 +23,14 @@ const RESPONSE = {
     responseCode: 1006, responseMessage: {
       "en": "user not found for the credentials"
     }
+  },USER_OTP_ALREADY_VERIFIED: {
+    responseCode: 1007, responseMessage: {
+      "en": "user otp already verified, please login"
+    }
+  },WRONG_PASSWORD: {
+    responseCode: 1008, responseMessage: {
+      "en": "Oops, Entered wrong password."
+    }
   },
 };
 
