@@ -27,7 +27,6 @@ class UserRegisterAction extends baseAction {
 
       const userData = {
         type: GLB.USER_TYPE.EMAIL,
-        access_token: "",
         user_name: userName,
         type: GLB.USER_TYPE.EMAIL,
         email_id: emailId,

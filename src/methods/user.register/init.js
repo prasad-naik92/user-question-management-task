@@ -13,7 +13,7 @@ class UserRegisterInitalize extends baseInitialize {
       "userName": {
         "name": "user_name",
         "type": "string",
-        "description": "inp_vals",
+        "description": "user name",
         "required": false,
         "default": ""
       },
@@ -27,7 +27,7 @@ class UserRegisterInitalize extends baseInitialize {
       "password": {
         "name": "password",
         "type": "string",
-        "description": "",
+        "description": "password",
         "required": true,
         "default": ""
       }

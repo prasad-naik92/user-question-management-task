@@ -4,7 +4,7 @@ class QuestionAddInitalize extends baseInitialize {
   constructor() {
     super();
     this.initializer = {};
-    this.initializer.isSecured = false; // values: true/false
+    this.initializer.isSecured = true; // values: true/false
     this.initializer.requestMethod = ['GET']; // requestMethod: ['GET', 'POST', 'PUT', 'DELETE']
   }
 

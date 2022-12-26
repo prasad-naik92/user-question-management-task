@@ -1,5 +1,5 @@
 
-class UserLoginInitalize extends baseInitialize {
+class QuestionListInitalize extends baseInitialize {
 
   constructor() {
     super();
@@ -10,24 +10,17 @@ class UserLoginInitalize extends baseInitialize {
 
   getParameter() {
     const param = {
-      "type": {
-        "name": "type",
-        "type": "number",
-        "description": "1-Email;",
-        "required": true,
-        "default": ""
-      },
-      "emailId": {
-        "name": "email_id",
+      "limit": {
+        "name": "limit",
         "type": "string",
-        "description": "email id",
+        "description": "limit",
         "required": true,
-        "default": ""
+        "default": "10"
       },
-      "password": {
-        "name": "password",
+      "pageNumber": {
+        "name": "page_number",
         "type": "string",
-        "description": "password",
+        "description": "page number",
         "required": true,
         "default": ""
       },
@@ -37,4 +30,4 @@ class UserLoginInitalize extends baseInitialize {
   }
 }
 
-module.exports = UserLoginInitalize;
+module.exports = QuestionListInitalize;
