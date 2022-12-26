@@ -5,7 +5,7 @@ class QuestionAddAction extends baseAction {
   async executeMethod() {
 
     try {
-      let { questionTitle, questionDescription, difficultyLevel, optionOne, optionTwo, optionThree, optionfour,userObj } = this;
+      let { questionTitle, questionDescription, difficultyLevel, optionOne, optionTwo, optionThree, optionfour } = this;
      
        /*-------------------- IMPORTING LIBRARY ----------------------*/
       const [questionLib] = AutoLoad.loadLibray("sqlLib", ["question"]);
